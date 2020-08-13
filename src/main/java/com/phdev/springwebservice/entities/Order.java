@@ -1,4 +1,4 @@
-package com.phdev.springwebservice.repositories;
+package com.phdev.springwebservice.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.phdev.springwebservice.entities.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 @Entity
@@ -22,7 +22,10 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
+	
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "client_id")
@@ -42,8 +45,8 @@ public class Order implements Serializable {
 		return client;
 	}
 	
-	public void setClient(User clienteUser) {
-		this.client = clienteUser;
+	public void setClient(User client) {
+		this.client = client;
 	}
 
 
