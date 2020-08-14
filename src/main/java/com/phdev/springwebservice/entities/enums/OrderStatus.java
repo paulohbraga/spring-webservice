@@ -1,7 +1,5 @@
 package com.phdev.springwebservice.entities.enums;
 
-
-
 public enum OrderStatus {
 	
 	WAITING(1),
@@ -10,11 +8,12 @@ public enum OrderStatus {
 	DELIVERED(4),
 	CANCELED(5);
 	
+	private int code;
+
 	private OrderStatus(int code) {
 		this.code = code;
 	}
 
-	private int code;
 	
 	public int getCode() {
 		return code;
@@ -27,7 +26,7 @@ public enum OrderStatus {
 				return value;
 			}
 		}
-		throw new IllegalArgumentException("Illegal argument");
+		throw new IllegalArgumentException("Illegal argument code");
 	}
 
 }
