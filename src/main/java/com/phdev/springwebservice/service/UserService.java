@@ -3,6 +3,8 @@ package com.phdev.springwebservice.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -47,7 +49,15 @@ public class UserService {
 	public User update(Long id, User user) {
 		User entity = repository.getOne(id);
 		updateData(entity, user);
-		return repository.save(entity);
+
+		try {	
+			return repository.save(entity);
+		}catch(EmptyResultDataAccessException e){
+			throw new ResourceNotFoundException(id);
+		}catch(EntityNotFoundException e) {
+			throw new DatabaseException(e.getMessage());
+		}
+
 		// remember always return a database action in service layer
 	}
 
