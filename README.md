@@ -14,6 +14,6 @@ Tasks:
 - CRUD - Create, Retrieve, Update, Delete
 - Handle exceptions
 
-p align="center">
+<p align="center">
 <img alt="model"  width="800px" src="https://raw.githubusercontent.com/paulohbraga/spring-webservice/master/Database%20model/Domain%20model.png" />
 </p>
